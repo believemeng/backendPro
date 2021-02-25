@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 
+// file deepcode ignore MissingBuffering: <comment the reason here>
 public class AESEncrypt {
     public static byte[] pkcs5PaddingBytes = {
             0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,

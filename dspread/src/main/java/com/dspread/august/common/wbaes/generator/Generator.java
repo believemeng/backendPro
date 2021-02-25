@@ -40,6 +40,7 @@ import java.security.SecureRandom;
  * AES: http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
  * @author ph4r05
  */
+// file deepcode ignore LocalVariableNamingConventions: <comment the reason here>
 public class Generator {
     // CODING CONSTANTS
     // 白盒编码常量

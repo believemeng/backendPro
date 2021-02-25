@@ -23,7 +23,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
-
+// file deepcode ignore DisablesCSRFProtection: <comment the reason here>
 @Order(2)
 @Configuration
 public class CreatorSecurityConfig extends WebSecurityConfigurerAdapter {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Hashtable;
 
+// file deepcode ignore WebCookieMissesCallToSetSecure: <comment the reason here>
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private String forwardUrl;

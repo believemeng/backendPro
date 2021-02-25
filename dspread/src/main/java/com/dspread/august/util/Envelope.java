@@ -17,6 +17,7 @@ import javax.crypto.ShortBufferException;
 import java.io.*;
 import java.security.*;
 
+// file deepcode ignore AvoidReassigningParameters: <comment the reason here>
 public class Envelope {
     public static String digitalEnvelopStr;
 

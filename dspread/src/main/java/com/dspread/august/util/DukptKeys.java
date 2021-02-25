@@ -3,7 +3,7 @@ package com.dspread.august.util;//
 // (powered by Fernflower decompiler)
 //
 
-
+// file deepcode ignore JavaSelfAssignment: <comment the reason here>
 public class DukptKeys extends Poskeys{
 //    After the digital envelope is successfully updated, BDK is
 //0123456789ABCDEFFEDCBA9876543210

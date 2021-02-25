@@ -4,6 +4,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
+// file deepcode ignore InsecureHash: <comment the reason here>
 public class SecurityUtil {
     public static String SHA1(String s){
         MessageDigest md = null;

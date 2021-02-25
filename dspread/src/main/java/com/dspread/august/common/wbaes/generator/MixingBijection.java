@@ -40,6 +40,7 @@ import java.security.SecureRandom;
  * 
  * @author ph4r05
  */
+// file deepcode ignore LocalVariableNamingConventions: <comment the reason here>
 public class MixingBijection {
     public static final int FSIZE=2;        // field size
     public static final int QSIZE=4;        // block matrix default size
