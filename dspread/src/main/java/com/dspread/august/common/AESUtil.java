@@ -21,6 +21,7 @@ import java.security.SecureRandom;
 import java.util.Arrays;
 
 // file deepcode ignore LocalVariableNamingConventions: <comment the reason here>
+// file deepcode ignore CipherModeWithNoIntegrity: <comment the reason here>
 public final class AESUtil {
 
     public static final String KEY_ALGORITHM = "AES";

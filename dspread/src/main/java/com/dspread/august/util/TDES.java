@@ -17,7 +17,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-// file deepcode ignore ApiMigration: <comment the reason here>
+// file deepcode ignore InsecureCipher: <comment the reason here>
 public class TDES {
     public TDES() {
     }
