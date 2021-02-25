@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: august
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: jianguo
+Implementation-Vendor-Id: com.dspread
+Created-By: Apache Maven 3.3.9
+Build-Jdk: 1.8.0_131
+Implementation-URL: http://projects.spring.io/spring-boot/august/
+Implementation-Vendor: Pivotal Software, Inc.
+
