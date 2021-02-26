@@ -14,6 +14,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
 
 // file deepcode ignore WebCookieMissesCallToSetSecure: <comment the reason here>
@@ -45,7 +46,8 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
             UserModel user = userDetails.getUser();
             jsonResult = new JsonResult(user);
         } else {
-            Hashtable ht = new Hashtable();
+            //  deepcode ignore ApiMigration: <comment the reason here>
+            HashMap ht = new HashMap();
             ht.put("openid", authentication.getName());
             jsonResult = new JsonResult(ht);
         }
