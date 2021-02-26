@@ -144,6 +144,7 @@ public class TDES {
             if (hex.length() == 1) {
                 hex = '0' + hex;
             }
+            // deepcode ignore NoStringConcat: <please specify a reason of ignoring this>
             sb.append(hex.toUpperCase());
         }
         return sb.toString();

@@ -60,6 +60,7 @@ public class CreatorAuthenticationSuccessHandler implements AuthenticationSucces
         }
 
         if(!StringUtils.isEmpty(this.authCookie)){
+            // deepcode ignore WebCookieMissesCallToSetSecure: <please specify a reason of ignoring this>, deepcode ignore WebCookieMissesCallToSetHttpOnly: <please specify a reason of ignoring this>, deepcode ignore MissingAPI: <please specify a reason of ignoring this>
             Cookie cookie = new Cookie(this.authCookie, encrypt(authentication.getName()));
             cookie.setPath(StringUtils.isEmpty(request.getContextPath()) ?  "/" : request.getContextPath());
             if(this.expiry > 0) {

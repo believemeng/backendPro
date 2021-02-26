@@ -119,7 +119,7 @@ public class CommonService {
                 //TODO:判断返回的json数组是否不为空,此处即可处理你的业务
             }*/
         } catch (IOException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
     }
 

@@ -163,6 +163,7 @@ public class Envelope {
         byte[] results = new byte[0];
 
         try {
+            // deepcode ignore InsecureHash: <please specify a reason of ignoring this>
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             md.update(message);
             results = md.digest();

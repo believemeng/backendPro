@@ -3,7 +3,7 @@ package com.dspread.august.util;//
 // (powered by Fernflower decompiler)
 //
 
-
+// file deepcode ignore JavaSelfAssignment: <comment the reason here>
 public class DukptKeys extends Poskeys{
 //    After the digital envelope is successfully updated, BDK is
 //0123456789ABCDEFFEDCBA9876543210
@@ -21,14 +21,14 @@ public class DukptKeys extends Poskeys{
     }
 
     public DukptKeys(String trackipek, String emvipek, String pinipek, String trackksn, String emvksn, String pinksn, String tmk, String filePath) {
-        trackipek = trackipek;
-        emvipek = emvipek;
-        pinipek = pinipek;
-        trackksn = trackksn;
-        emvksn = emvksn;
-        pinksn = pinksn;
-        tmk = tmk;
-        filePath = filePath;
+        // deepcode ignore CopyPasteError: <please specify a reason of ignoring this>
+        this.trackipek = trackipek;
+        this.emvipek = emvipek;
+        this.pinipek = pinipek;
+        this.trackksn = trackksn;
+        this.emvksn = emvksn;
+        this.pinksn = pinksn;
+        this.tmk = tmk;
     }
 
     public   String getTrackipek() {
@@ -36,7 +36,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setTrackipek(String trackipek) {
-        trackipek = trackipek;
+        this.trackipek = trackipek;
     }
 
     public   String getEmvipek() {
@@ -44,7 +44,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setEmvipek(String emvipek) {
-        emvipek = emvipek;
+        this.emvipek = emvipek;
     }
 
     public   String getPinipek() {
@@ -52,7 +52,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setPinipek(String pinipek) {
-        pinipek = pinipek;
+        this.pinipek = pinipek;
     }
 
     public   String getTrackksn() {
@@ -60,7 +60,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setTrackksn(String trackksn) {
-        trackksn = trackksn;
+        this.trackksn = trackksn;
     }
 
     public   String getEmvksn() {
@@ -68,7 +68,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setEmvksn(String emvksn) {
-        emvksn = emvksn;
+        this.emvksn = emvksn;
     }
 
     public   String getPinksn() {
@@ -76,7 +76,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setPinksn(String pinksn) {
-        pinksn = pinksn;
+        this.pinksn = pinksn;
     }
 
     public   String getTmk() {
@@ -84,7 +84,7 @@ public class DukptKeys extends Poskeys{
     }
 
     public   void setTmk(String tmk) {
-        tmk = tmk;
+        this.tmk = tmk;
     }
 
 

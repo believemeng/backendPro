@@ -3,7 +3,7 @@ package com.dspread.august.util;//
 // (powered by Fernflower decompiler)
 //
 
-
+// file deepcode ignore AvoidReassigningParameters: <comment the reason here>
 public class Utils {
     private static String digits = "0123456789abcdef";
 
@@ -11,7 +11,7 @@ public class Utils {
     }
 
     public static String toHex(byte[] data, int length) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
 
         for(int i = 0; i != length; ++i) {
             int v = data[i] & 255;

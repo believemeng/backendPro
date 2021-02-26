@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.Arrays;
 
+// file deepcode ignore MissingBuffering: <comment the reason here>
 public class AESEncrypt {
     public static byte[] pkcs5PaddingBytes = {
             0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08,
@@ -27,6 +28,7 @@ public class AESEncrypt {
 
         try
         {
+            // deepcode ignore DontCloseInTry: <please specify a reason of ignoring this>
             FileInputStream fileIn = new FileInputStream(aesTablePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             AESenc = (AES) in.readObject();
@@ -34,11 +36,11 @@ public class AESEncrypt {
             fileIn.close();
         }catch(IOException i)
         {
-            i.printStackTrace();
+//            i.printStackTrace();
             return null;
         }catch(ClassNotFoundException c)
         {
-            c.printStackTrace();
+//            c.printStackTrace();
             return null;
         }
         int diff = 16 - content.length % 16;

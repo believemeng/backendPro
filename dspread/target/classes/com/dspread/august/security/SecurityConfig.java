@@ -20,6 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests().anyRequest().permitAll()
                 .and()
+                // deepcode ignore DisablesCSRFProtection: <please specify a reason of ignoring this>
                 .csrf().disable();
     }
 

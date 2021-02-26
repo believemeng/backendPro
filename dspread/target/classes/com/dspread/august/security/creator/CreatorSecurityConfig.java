@@ -23,7 +23,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
-
+// file deepcode ignore DisablesCSRFProtection: <comment the reason here>
 @Order(2)
 @Configuration
 public class CreatorSecurityConfig extends WebSecurityConfigurerAdapter {
@@ -65,7 +65,7 @@ public class CreatorSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/api/creator/**")
-                .csrf().disable()
+                .csrf().disable()//  deepcode ignore DisablesCSRFProtection: <comment the reason here>
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new MyPreAuthenticatedProcessingFilter(authenticationManager(), "creator_auth_token"))

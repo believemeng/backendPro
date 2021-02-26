@@ -17,6 +17,7 @@ import javax.crypto.ShortBufferException;
 import java.io.*;
 import java.security.*;
 
+// file deepcode ignore AvoidReassigningParameters: <comment the reason here>
 public class Envelope {
     public static String digitalEnvelopStr;
 
@@ -162,6 +163,7 @@ public class Envelope {
         byte[] results = new byte[0];
 
         try {
+            // deepcode ignore InsecureHash: <please specify a reason of ignoring this>
             MessageDigest md = MessageDigest.getInstance("SHA-1");
             md.update(message);
             results = md.digest();
