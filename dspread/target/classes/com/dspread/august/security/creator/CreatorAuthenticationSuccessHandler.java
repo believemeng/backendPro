@@ -54,6 +54,7 @@ public class CreatorAuthenticationSuccessHandler implements AuthenticationSucces
             UserModel user = userDetails.getUser();
             jsonResult = new JsonResult(user);
         } else {
+            //  deepcode ignore ApiMigration: <comment the reason here>
             Hashtable ht = new Hashtable();
             ht.put("openid", authentication.getName());
             jsonResult = new JsonResult(ht);
