@@ -17,7 +17,6 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-// file deepcode ignore InsecureCipher: <comment the reason here>
 public class TDES {
     public TDES() {
     }
@@ -113,7 +112,7 @@ public class TDES {
 
         try {
             byte[] bytes = tdesDecrypt(tdeskeyBytes,input);
-//            System.out.println(parseByte2HexStr(bytes));
+            System.out.println(parseByte2HexStr(bytes));
 
         } catch (Exception var8) {
             var8.printStackTrace();
@@ -138,13 +137,12 @@ public class TDES {
 
     // 字节数组转十六进制字符串
     public static String parseByte2HexStr(byte buf[]) {
-        StringBuilder sb = new StringBuilder();
+        StringBuffer sb = new StringBuffer();
         for (int i = 0; i < buf.length; i++) {
             String hex = Integer.toHexString(buf[i] & 0xFF);
             if (hex.length() == 1) {
                 hex = '0' + hex;
             }
-            // deepcode ignore NoStringConcat: <please specify a reason of ignoring this>
             sb.append(hex.toUpperCase());
         }
         return sb.toString();

@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// file deepcode ignore DisablesCSRFProtection: <comment the reason here>
 @Configuration
 public class MerchantSecurityConfig extends WebSecurityConfigurerAdapter {
 

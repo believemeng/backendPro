@@ -37,13 +37,17 @@ import java.net.URLEncoder;
 import java.util.Base64;
 import java.util.Date;
 
-// file deepcode ignore XSS: <comment the reason here>
 @RestController
 @RequestMapping(value = "/api/")
 @Api(tags = "spoc index 服务接口")
 public class IndexController {
     @Autowired
     private CommonService commonService;
+
+    @GetMapping(value = "/test")
+    public String test(){
+        return "hello world!";
+    }
 
     /**
      * 测试接口index
@@ -68,7 +72,7 @@ public class IndexController {
     @ApiOperation(value = "监控接口", notes = "未作修改")
 //    @ApiImplicitParam(name = "MonitorModel", value = "监控信息实体", paramType = "query", dataType = "MonitorModel", required = true)
     public JsonResult monitor(@RequestBody MonitorModel monitorModel) {
-        return commonService.addMonitor(monitorModel);//  deepcode ignore XSS: <comment the reason here>
+        return commonService.addMonitor(monitorModel);
     }
 
     /**
@@ -82,7 +86,7 @@ public class IndexController {
     @ApiOperation(value = "上传交易信息", notes = "未作修改")
 //    @ApiImplicitParam(name = "TransactionModel", value = "交易数据", paramType = "query", dataType = "TransactionModel", required = true)
     public JsonResult transaction(@RequestBody TransactionModel ransactionModel) {
-        return commonService.addTransaction(ransactionModel);//  deepcode ignore XSS: <comment the reason here>
+        return commonService.addTransaction(ransactionModel);
     }
 
     /**
@@ -139,7 +143,7 @@ public class IndexController {
                 //we're only really interested in the body/payload
                 Base64.Decoder decoder = Base64.getDecoder();
                 String decodedPayload = new String(decoder.decode(jwtParts[1]));
-//                System.out.println("result = " + decodedPayload);
+                System.out.println("result = " + decodedPayload);
                 SafetyNetResponse parse = SafetyNetResponse.parse(decodedPayload);
                 String header = request.getHeader("User-Agent");
 
@@ -158,7 +162,7 @@ public class IndexController {
                     }
                 }
             } else {
-//                throw new NullPointerException();
+                throw new NullPointerException();
             }
         } catch (Exception e) {
 
@@ -288,7 +292,7 @@ public class IndexController {
             out.flush();
             out.close();
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             commonService.saveErrorMsg(new ErrorMsgModel(0,request.getHeader("TerminalId"),e.getMessage()));
 
         }

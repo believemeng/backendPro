@@ -102,20 +102,20 @@ public class Util {
                 sb.append(line);
             }
         } catch (IOException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         } finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
                 } catch (IOException e) {
-//                    e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             if (reader != null) {
                 try {
                     reader.close();
                 } catch (IOException e) {
-//                    e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
         }

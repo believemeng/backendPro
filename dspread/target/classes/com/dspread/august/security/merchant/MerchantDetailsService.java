@@ -34,7 +34,7 @@ public class MerchantDetailsService extends JwtUserDetailsService {
 
             }
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return userDetails;
     }

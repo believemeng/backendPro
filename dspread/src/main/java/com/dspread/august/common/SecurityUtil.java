@@ -4,7 +4,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Random;
 
-// file deepcode ignore InsecureHash: <comment the reason here>
 public class SecurityUtil {
     public static String SHA1(String s){
         MessageDigest md = null;
@@ -14,7 +13,7 @@ public class SecurityUtil {
             byte[] digest = md.digest(s.getBytes());
             stnStr = getFormattedText(digest);
         } catch (NoSuchAlgorithmException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return stnStr;
     }
@@ -39,7 +38,6 @@ public class SecurityUtil {
             out[j++] = DIGITS_LOWER[(0xF0 & data[i]) >>> 4];
             out[j++] = DIGITS_LOWER[0x0F & data[i]];
         }
-        // deepcode ignore ReplaceBoxedConstructor: <please specify a reason of ignoring this>
         return new String(out);
     }
     private static String getFormattedText(byte[] bytes) {
@@ -58,7 +56,6 @@ public class SecurityUtil {
         String string = "JGA0NAP11V7C6TNY7O1C72WB9FE4E1H8L6WT0KO00WKAOERIVGA452H7ABKPPOY1101CY8CF0NT8QVOKOEIB0A70AL1BEOO2BW1H085THEAH7O38KAH088";
         Random random = new Random();
 
-        // deepcode ignore ApiMigration: <please specify a reason of ignoring this>
         StringBuffer sb = new StringBuffer();
         int length = 12;
         for (int i = 0; i < length; i++) {
@@ -74,7 +71,6 @@ public class SecurityUtil {
         String string = "1234567890";
         Random random = new Random();
 
-        // deepcode ignore ApiMigration: <please specify a reason of ignoring this>
         StringBuffer sb = new StringBuffer();
         int length = 6;
         for (int i = 0; i < length; i++) {

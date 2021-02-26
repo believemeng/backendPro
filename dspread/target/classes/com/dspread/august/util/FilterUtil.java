@@ -2,9 +2,6 @@ package com.dspread.august.util;
 
 import java.util.ArrayList;
 
-/**
- * 过滤这些api，不用检测token和登录验证
- */
 public class FilterUtil {
     public static final ArrayList<String> arrUrl;
     static {
@@ -23,6 +20,7 @@ public class FilterUtil {
         arrUrl.add("/swagger-resources");
         arrUrl.add("/swagger-resources/**");
         arrUrl.add("/v2/api-docs");
+        arrUrl.add("/api/test");
         arrUrl.add("/webjars/springfox-swagger-ui/**");
         // SWAGGER2过滤【END】
     }

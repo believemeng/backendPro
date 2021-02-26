@@ -39,7 +39,7 @@ public class MyLogoutSuccessHandler implements LogoutSuccessHandler {
             writer.flush();
             writer.close();
         }catch (IOException o){
-//            o.printStackTrace();
+            o.printStackTrace();
             if(writer != null){
                 writer.flush();
                 writer.close();

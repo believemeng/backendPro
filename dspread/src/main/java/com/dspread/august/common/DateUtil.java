@@ -75,7 +75,7 @@ public class DateUtil {
             return  pase ;
         } catch (ParseException e) {
             // TODO Auto-generated catch block
-//            e.printStackTrace();
+            e.printStackTrace();
             return  null ;
         }
     }
@@ -88,7 +88,7 @@ public class DateUtil {
             endDate=sdf.parse(sdf.format(endDate));
         } catch (ParseException e) {
             // TODO Auto-generated catch block
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(startDate);

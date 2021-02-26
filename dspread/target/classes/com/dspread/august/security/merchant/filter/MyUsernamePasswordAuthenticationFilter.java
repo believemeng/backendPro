@@ -38,7 +38,7 @@ public class MyUsernamePasswordAuthenticationFilter extends UsernamePasswordAuth
             authRequest = new UsernamePasswordAuthenticationToken(
                     authenticationBean.getUsername(), authenticationBean.getPassword());
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
             authRequest = new UsernamePasswordAuthenticationToken(
                     "", "");
         } finally {

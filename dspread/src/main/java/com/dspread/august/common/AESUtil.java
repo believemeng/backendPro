@@ -20,8 +20,6 @@ import java.security.Key;
 import java.security.SecureRandom;
 import java.util.Arrays;
 
-// file deepcode ignore LocalVariableNamingConventions: <comment the reason here>
-// file deepcode ignore CipherModeWithNoIntegrity: <comment the reason here>
 public final class AESUtil {
 
     public static final String KEY_ALGORITHM = "AES";
@@ -29,7 +27,6 @@ public final class AESUtil {
 
     // 生成密钥
     public static byte[] generateKey() throws Exception {
-        // deepcode ignore InsecureDefaultAesCipher: <please specify a reason of ignoring this>
         KeyGenerator keyGenerator = KeyGenerator.getInstance(KEY_ALGORITHM);
         keyGenerator.init(128);
         SecretKey key = keyGenerator.generateKey();
@@ -47,7 +44,6 @@ public final class AESUtil {
 
     // 生成iv
     public static AlgorithmParameters generateIV(byte[] iv) throws Exception {
-        // deepcode ignore InsecureDefaultAesCipher: <please specify a reason of ignoring this>
         AlgorithmParameters params = AlgorithmParameters.getInstance(KEY_ALGORITHM);
         params.init(new IvParameterSpec(iv));
         return params;
@@ -55,7 +51,6 @@ public final class AESUtil {
 
     // 转化成JAVA的密钥格式
     public static Key convertToKey(byte[] keyBytes) throws Exception {
-        // deepcode ignore InsecureDefaultAesCipher: <please specify a reason of ignoring this>
         SecretKey secretKey = new SecretKeySpec(keyBytes, KEY_ALGORITHM);
         return secretKey;
     }
@@ -94,7 +89,7 @@ public final class AESUtil {
             String str_key = Utils.bytesToHexString(bytes_key);
             return str_key;
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
         return null;
     }

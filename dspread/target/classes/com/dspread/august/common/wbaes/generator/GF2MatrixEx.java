@@ -43,7 +43,6 @@ import java.security.SecureRandom;
  * implementation)
  * 该类描述了在有限域GF（2）上使用矩阵的一些操作，并用于ecc和MQ-PKC（也有一些特定的方法和实现）
  */
-// file deepcode ignore DivisionByZero: <comment the reason here>
 public class GF2MatrixEx extends Matrix
 {
     // 2 ^ BLOCKEXP =一个存储块的大小

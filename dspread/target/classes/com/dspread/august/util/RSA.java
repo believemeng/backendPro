@@ -3,6 +3,9 @@ package com.dspread.august.util;//
 // (powered by Fernflower decompiler)
 //
 
+
+
+
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import sun.misc.BASE64Decoder;
 
@@ -32,7 +35,7 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
-// file deepcode ignore AvoidThrowingRawExceptionTypes: <comment the reason here>
+
 public class RSA {
     public static final String SIGN_ALGORITHMS = "SHA1WithRSA";
     private static final String DEFAULT_PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQChDzcjw/rWgFwnxunbKp7/4e8w\r/UmXx2jk6qEEn69t6N2R1i/LmcyDT1xr/T2AHGOiXNQ5V8W4iCaaeNawi7aJaRht\rVx1uOH/2U378fscEESEG8XDqll0GCfB1/TjKI2aitVSzXOtRs8kYgGU78f7VmDNg\rXIlk3gdhnzh+uoEQywIDAQAB\r";
@@ -61,8 +64,6 @@ public class RSA {
             var3.printStackTrace();
         }
 
-        assert keyPairGen != null;
-        // deepcode ignore TooSmallRsaKeySizeUsed: <please specify a reason of ignoring this>
         keyPairGen.initialize(1024, new SecureRandom());
         KeyPair keyPair = keyPairGen.generateKeyPair();
         this.privateKey = (RSAPrivateKey)keyPair.getPrivate();

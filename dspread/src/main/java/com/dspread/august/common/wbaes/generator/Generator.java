@@ -40,7 +40,6 @@ import java.security.SecureRandom;
  * AES: http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
  * @author ph4r05
  */
-// file deepcode ignore LocalVariableNamingConventions: <comment the reason here>
 public class Generator {
     // CODING CONSTANTS
     // 白盒编码常量
@@ -944,7 +943,6 @@ public class Generator {
         // Generate round keys
         // -System.out.println("Computing key schedule ");
         byte[] keySchedule = AESh.keySchedule(key, keySize, debug);
-        // deepcode ignore MissingAPI: <please specify a reason of ignoring this>
         StringBuilder sb = new StringBuilder();
         for(int i=0; i<keySchedule.length; i++){
             sb.append(String.format("0x%02X", keySchedule[i]));

@@ -51,7 +51,7 @@ public class HttpUtil {
                 httpclient.close();
             }
             catch (IOException e){
-//                e.printStackTrace();
+                e.printStackTrace();
             }
         }
         return  result;
@@ -98,13 +98,13 @@ public class HttpUtil {
                 try {
                     response.close();
                 } catch (IOException e) {
-//                    e.printStackTrace();
+                    e.printStackTrace();
                 }
             }
             try {
                 httpclient.close();
             } catch (IOException e) {
-//                e.printStackTrace();
+                e.printStackTrace();
             }
         }
         return null;
