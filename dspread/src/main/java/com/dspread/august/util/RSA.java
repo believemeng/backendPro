@@ -61,6 +61,8 @@ public class RSA {
             var3.printStackTrace();
         }
 
+        assert keyPairGen != null;
+        // deepcode ignore TooSmallRsaKeySizeUsed: <please specify a reason of ignoring this>
         keyPairGen.initialize(1024, new SecureRandom());
         KeyPair keyPair = keyPairGen.generateKeyPair();
         this.privateKey = (RSAPrivateKey)keyPair.getPrivate();

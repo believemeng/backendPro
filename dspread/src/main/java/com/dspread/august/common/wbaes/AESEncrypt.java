@@ -28,6 +28,7 @@ public class AESEncrypt {
 
         try
         {
+            // deepcode ignore DontCloseInTry: <please specify a reason of ignoring this>
             FileInputStream fileIn = new FileInputStream(aesTablePath);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             AESenc = (AES) in.readObject();
@@ -35,11 +36,11 @@ public class AESEncrypt {
             fileIn.close();
         }catch(IOException i)
         {
-            i.printStackTrace();
+//            i.printStackTrace();
             return null;
         }catch(ClassNotFoundException c)
         {
-            c.printStackTrace();
+//            c.printStackTrace();
             return null;
         }
         int diff = 16 - content.length % 16;

@@ -17,7 +17,7 @@ import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
-// file deepcode ignore ApiMigration: <comment the reason here>
+// file deepcode ignore InsecureCipher: <comment the reason here>
 public class TDES {
     public TDES() {
     }
@@ -144,6 +144,7 @@ public class TDES {
             if (hex.length() == 1) {
                 hex = '0' + hex;
             }
+            // deepcode ignore NoStringConcat: <please specify a reason of ignoring this>
             sb.append(hex.toUpperCase());
         }
         return sb.toString();

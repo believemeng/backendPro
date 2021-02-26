@@ -33,7 +33,7 @@ public class MyUserDetailsService implements UserDetailsService {
                 throw new UsernameNotFoundException("该用户不存在！");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+//            e.printStackTrace();
         }
         return userDetails;
     }

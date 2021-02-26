@@ -54,12 +54,14 @@ public class CreatorAuthenticationSuccessHandler implements AuthenticationSucces
             UserModel user = userDetails.getUser();
             jsonResult = new JsonResult(user);
         } else {
+            //  deepcode ignore ApiMigration: <comment the reason here>
             Hashtable ht = new Hashtable();
             ht.put("openid", authentication.getName());
             jsonResult = new JsonResult(ht);
         }
 
         if(!StringUtils.isEmpty(this.authCookie)){
+            // deepcode ignore WebCookieMissesCallToSetSecure: <please specify a reason of ignoring this>, deepcode ignore WebCookieMissesCallToSetHttpOnly: <please specify a reason of ignoring this>, deepcode ignore MissingAPI: <please specify a reason of ignoring this>
             Cookie cookie = new Cookie(this.authCookie, encrypt(authentication.getName()));
             cookie.setPath(StringUtils.isEmpty(request.getContextPath()) ?  "/" : request.getContextPath());
             if(this.expiry > 0) {

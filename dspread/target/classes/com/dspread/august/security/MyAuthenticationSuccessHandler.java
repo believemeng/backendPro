@@ -14,8 +14,10 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Hashtable;
 
+// file deepcode ignore WebCookieMissesCallToSetSecure: <comment the reason here>
 public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
     private String forwardUrl;
@@ -44,12 +46,14 @@ public class MyAuthenticationSuccessHandler implements AuthenticationSuccessHand
             UserModel user = userDetails.getUser();
             jsonResult = new JsonResult(user);
         } else {
-            Hashtable ht = new Hashtable();
+            //  deepcode ignore ApiMigration: <comment the reason here>
+            HashMap ht = new HashMap();
             ht.put("openid", authentication.getName());
             jsonResult = new JsonResult(ht);
         }
 
         if(!StringUtils.isEmpty(this.authCookie)){
+            // deepcode ignore WebCookieMissesCallToSetHttpOnly: <please specify a reason of ignoring this>, deepcode ignore MissingAPI: <please specify a reason of ignoring this>
             Cookie cookie = new Cookie(this.authCookie, encrypt(authentication.getName()));
             cookie.setPath(StringUtils.isEmpty(request.getContextPath()) ?  "/" : request.getContextPath());
             if(this.expiry > 0) {

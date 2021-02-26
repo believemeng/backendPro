@@ -111,7 +111,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             writer.flush();
             writer.close();
         }catch (Exception o){
-            o.printStackTrace();
+//            o.printStackTrace();
         }
         return res;
     }
