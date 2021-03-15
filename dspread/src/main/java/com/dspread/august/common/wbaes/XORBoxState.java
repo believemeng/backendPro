@@ -123,8 +123,8 @@ public class XORBoxState implements Serializable{
      * @return 
      */
     public static State xorA(final byte[][] xor, State a, State b){
-              byte ar[] = a.getState();
-        final byte br[] = b.getState();
+              byte[] ar = a.getState();
+        final byte[] br = b.getState();
         for (int i=0; i<WIDTH; i++){
             ar[i] = (byte)( 
                      (xor[2*i+0][(( ar[i]        & 0xF) << 4) | ( br[i]        & 0xF)]     ) 
@@ -190,7 +190,6 @@ public class XORBoxState implements Serializable{
      * Sets 1 sub-table in XOR table with 8 rows.
      * @param xorTbl
      * @param idx
-     * @param copy 
      */
     public void setPartXor(final byte[] xorTbl, final int idx){
         setPartXor(xorTbl, idx, true);
@@ -223,9 +222,6 @@ public class XORBoxState implements Serializable{
             return false;
         }
         final XORBoxState other = (XORBoxState) obj;
-        if (!Arrays.deepEquals(this.xor, other.xor)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.xor, other.xor);
     }
 }

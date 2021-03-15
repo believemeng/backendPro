@@ -36,6 +36,7 @@ import org.bouncycastle.pqc.math.linearalgebra.Permutation;
 import org.bouncycastle.pqc.math.linearalgebra.Vector;
 
 import java.security.SecureRandom;
+import java.util.Arrays;
 
 /**
  * This class describes some operations with matrices over finite field GF(2)
@@ -1189,7 +1190,7 @@ public class GF2MatrixEx extends Matrix
             // if words have to be shifted
             if (r != 0)
             {
-                int vw = 0;
+                int vw;
                 // process all but last word
                 for (int j = 0; j < length - 1; j++)
                 {
@@ -1275,7 +1276,7 @@ public class GF2MatrixEx extends Matrix
         int hash = (numRows * (INTSIZE-1) + numColumns) * (INTSIZE-1) + length;
         for (int i = 0; i < numRows; i++)
         {
-            hash = hash * (INTSIZE-1) + matrix[i].hashCode();
+            hash = hash * (INTSIZE-1) + Arrays.hashCode(matrix[i]);
         }
         return hash;
     }
@@ -1426,7 +1427,6 @@ public class GF2MatrixEx extends Matrix
     /**
      * Returns whether given GF2 is set.
      * 
-     * @param matrix
      * @param row
      * @param col
      * @return 
@@ -1508,7 +1508,8 @@ public class GF2MatrixEx extends Matrix
      * 
      * @param matrix
      * @param j
-     * @param vector 
+     * @param a
+     * @param alen
      */
     public static void addToCol(int[][] matrix, int j, int[] a, int alen){
         int n = matrix.length;
@@ -1716,7 +1717,6 @@ public class GF2MatrixEx extends Matrix
     * Adds matrix m to this matrix
     * 
     * @param m
-    * @return A
     */
    public void add(GF2MatrixEx m){
        final int rows = this.getNumRows();

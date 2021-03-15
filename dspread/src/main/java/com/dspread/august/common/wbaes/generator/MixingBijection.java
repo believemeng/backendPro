@@ -44,8 +44,8 @@ public class MixingBijection {
     public static final int FSIZE=2;        // field size
     public static final int QSIZE=4;        // block matrix default size
     public static final int ENCODED_OFFSET=8; // where matrix data really start in encoded form
-    private SecureRandom rand  = new SecureRandom();
-    private boolean      debug = false;
+    private final SecureRandom rand  = new SecureRandom();
+    private boolean debug = false;
     
     /**
      * Generates random matrix of dimension pxp that is invertible in GF(2).

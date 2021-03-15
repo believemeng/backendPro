@@ -44,11 +44,6 @@ public class IndexController {
     @Autowired
     private CommonService commonService;
 
-    @GetMapping(value = "/test")
-    public String test(){
-        return "hello world!";
-    }
-
     /**
      * 测试接口index
      *
@@ -271,7 +266,7 @@ public class IndexController {
 //    @RequestMapping(value = "/generateAESTable", method = {RequestMethod.POST, RequestMethod.GET})
     @PostMapping(value = "/generateAESTable")
     @ApiOperation(value = "生成AESTable文件")
-    public void generateAESTable() {
+    public void generateAESTable(@RequestBody String appSignature) {
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletResponse response = attributes.getResponse();
         HttpServletRequest request = attributes.getRequest();

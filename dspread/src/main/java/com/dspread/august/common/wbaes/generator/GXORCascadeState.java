@@ -37,7 +37,7 @@ import com.dspread.august.common.wbaes.generator.Generator.XORCODING;
  * @author ph4r05
  */
 public class GXORCascadeState implements IOEncoding {
-    protected XORCODING cod[];
+    protected XORCODING[] cod;
     protected Bijection4x4[] extCoding = null; // length = XORBoxState.BOXES;
     protected boolean outputUnallocated = true;
     
@@ -100,7 +100,7 @@ public class GXORCascadeState implements IOEncoding {
             // performing XOR inside one 
             for(int i=0; i<iterationsInStage; i+=2){
                 // Position to state[] for current stage
-                Generator.CONNECT_XOR_TO_XOR_128_H(cod[XORoffset + i+0], 0, cod[XORoffset + iterationsInStage + i/2], 0);
+                Generator.CONNECT_XOR_TO_XOR_128_H(cod[XORoffset + i], 0, cod[XORoffset + iterationsInStage + i/2], 0);
                 Generator.CONNECT_XOR_TO_XOR_128_L(cod[XORoffset + i+1], 0, cod[XORoffset + iterationsInStage + i/2], 0);
             }
             

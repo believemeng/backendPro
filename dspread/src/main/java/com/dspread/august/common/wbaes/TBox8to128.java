@@ -37,18 +37,17 @@ import java.util.Arrays;
  * Implements 8 -> 128 bit lookup table
  * 实现8 -> 128位查找表
  * 
- * @author ph4r05
+ * @author
  */
 public class TBox8to128 implements Serializable{
     public static final int IWIDTH=1;
-    public static final int OWIDTH=16;
     public static final int ROWS  =1<<(8*IWIDTH);
     private static final long serialVersionUID = 7019287776240130708L;
 
 
     // Main lookup table
     // 主查找表
-    protected State tbl[] = null;
+    protected State[] tbl = null;
 
     public TBox8to128() {
         init();
@@ -160,14 +159,11 @@ public class TBox8to128 implements Serializable{
             return false;
         }
         final TBox8to128 other = (TBox8to128) obj;
-        if (!Arrays.deepEquals(this.tbl, other.tbl)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.tbl, other.tbl);
     }
 
     @Override
     public String toString() {
-        return "TBox8to128{" + "tbl=" + tbl + "; size="+(tbl!=null ? tbl.length : -1)+"}";
+        return "TBox8to128{" + "tbl=" + Arrays.toString(tbl) + "; size="+(tbl!=null ? tbl.length : -1)+"}";
     }
 }

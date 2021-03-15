@@ -146,8 +146,7 @@ public class GenUtils {
      * @param inverse
      * @param size
      * @param init
-     * @param rand
-     * @return 
+     * @return
      */
     public int generateRandomBijection(int[] bijection, int[] inverse, int size, boolean init){
         return generateRandomBijection(bijection, inverse, size, init, rand);

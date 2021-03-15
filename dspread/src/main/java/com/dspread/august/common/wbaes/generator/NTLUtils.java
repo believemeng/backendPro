@@ -90,7 +90,7 @@ public class NTLUtils {
      * 最低位优先优先。
      * 
      * @param m
-     * @param src
+     * @param c
      * @param i     row
      * @param j     column
      */
@@ -107,7 +107,7 @@ public class NTLUtils {
      * 取8位数（BYTE / unsigned char）并将其位表示存储到从给定坐标开始到行数的行向量（可以是mat_GF2）。
      * 自然表示 - 最高位优先
      * @param m
-     * @param src
+     * @param c
      * @param i     row
      * @param j     column
      */
@@ -159,7 +159,6 @@ public class NTLUtils {
      * 置零
      * 
      * @param m
-     * @return 
      */
     public static void zero(GF2MatrixEx m){
         if (m.getNumRows()==0 || m.getNumColumns()==0) {
@@ -282,8 +281,8 @@ public class NTLUtils {
         //assert((src.NumRows()) < (row*8));
         //assert((src.NumCols()) < col);
         long dst = 0;
-        dst |= Utils.byte2long(colBinaryVectorToByte(src, row+8*0, col), 0);
-        dst |= Utils.byte2long(colBinaryVectorToByte(src, row+8*1, col), 1);
+        dst |= Utils.byte2long(colBinaryVectorToByte(src, row, col), 0);
+        dst |= Utils.byte2long(colBinaryVectorToByte(src, row+ 8, col), 1);
         dst |= Utils.byte2long(colBinaryVectorToByte(src, row+8*2, col), 2);
         dst |= Utils.byte2long(colBinaryVectorToByte(src, row+8*3, col), 3);
         return dst;

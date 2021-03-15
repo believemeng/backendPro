@@ -131,7 +131,7 @@ public class Utils {
      * @return 
      */
     public static long byte2long(byte a, int idx){
-        return (long) ((long)(a & 0xff) << (8*idx));
+        return (long)(a & 0xff) << (8*idx);
     }
     
      public static int ceil(double x) {
@@ -139,18 +139,18 @@ public class Utils {
     }
      
      public static String toBinaryString(int[] input) {
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int i;
         for (i = 0; i < input.length; i++) {
             int e = input[i];
             for (int ii = 0; ii < 32; ii++) {
                 int b = (e >>> ii) & 1;
-                result += b;
+                result.append(b);
             }
             if (i != input.length - 1) {
-                result += " ";
+                result.append(" ");
             }
         }
-        return result;
+        return result.toString();
     }
 }

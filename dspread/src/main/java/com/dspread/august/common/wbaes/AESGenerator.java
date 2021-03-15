@@ -22,9 +22,8 @@ public class AESGenerator {
 
 
         gEnc.generate(false,  key, 16, extc);
-        AES AESenc = gEnc.getAESi();
 
-        return AESenc;
+        return gEnc.getAESi();
     }
 
     public static void main(String[] args) {

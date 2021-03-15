@@ -134,9 +134,6 @@ public class XORCascade implements Serializable{
             return false;
         }
         final XORCascade other = (XORCascade) obj;
-        if (!Arrays.deepEquals(this.x, other.x)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.x, other.x);
     }
 }

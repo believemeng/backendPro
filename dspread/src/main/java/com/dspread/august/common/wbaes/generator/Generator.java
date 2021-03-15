@@ -38,7 +38,7 @@ import java.security.SecureRandom;
  * 该类为白盒AES表生成器
  *
  * AES: http://csrc.nist.gov/publications/fips/fips197/fips-197.pdf
- * @author ph4r05
+ * @author dspread
  */
 public class Generator {
     // CODING CONSTANTS
@@ -156,7 +156,7 @@ public class Generator {
     }
 
     public static class XORCODING {
-        public Coding xtb[];
+        public Coding[] xtb;
         public final int width;
 
         public XORCODING(Coding[] xtb) {
@@ -188,7 +188,7 @@ public class Generator {
     //
     public static class W08xZZCODING {
         public HighLow   IC;
-        public HighLow   OC[];          // SPEED OPTIMALIZATION, CAN BE ALSO COMPUTED FROM coding MEMBER (DUE TO BIJECTION PROPERTY)
+        public HighLow[] OC;          // SPEED OPTIMALIZATION, CAN BE ALSO COMPUTED FROM coding MEMBER (DUE TO BIJECTION PROPERTY)
         public final int width;
 
         public W08xZZCODING(HighLow IC, HighLow[] OC) {
@@ -239,7 +239,7 @@ public class Generator {
 
     public static void assrt(boolean condition){
         if (!condition){
-            assert(condition);
+            assert false;
             throw new AssertionError("Condition wasn't met");
         }
     }
@@ -255,7 +255,7 @@ public class Generator {
     }
 
     public static int posIdx(int x){
-        return x & 0xffffffff;
+        return x;
     }
 
     /**
@@ -454,7 +454,7 @@ public class Generator {
     }
 
     public static void CONNECT_XOR_TO_XOR_128(XORCODING xtb1, int offset1, XORCODING xtb3, int offset3, boolean HL) {
-        CONNECT_XOR_TO_XOR(xtb1, (offset1)+0,  xtb3, (offset3)+0,  HL);
+        CONNECT_XOR_TO_XOR(xtb1, (offset1),  xtb3, (offset3),  HL);
         CONNECT_XOR_TO_XOR(xtb1, (offset1)+8,  xtb3, (offset3)+8,  HL);
         CONNECT_XOR_TO_XOR(xtb1, (offset1)+16, xtb3, (offset3)+16, HL);
         CONNECT_XOR_TO_XOR(xtb1, (offset1)+24, xtb3, (offset3)+24, HL);
@@ -481,7 +481,7 @@ public class Generator {
     // 将2个连续XOR表的8bit输出连接到W08xZZ表的8bit输入
     //
     public static void CONNECT_XOR_TO_W08x32(XORCODING xtb, int offset, W08xZZCODING cod) {
-        cod.IC.type = xtb.xtb[(offset)+0].OC.type;
+        cod.IC.type = xtb.xtb[(offset)].OC.type;
 
         // Asserts checks if someone is not trying to overwrite already allocated
         // mappings on inputs (INPUT). If there is already some coding, no
@@ -492,12 +492,12 @@ public class Generator {
         // 如果已经有一些编码，则不允许重新分配。
         // 如果试图在某处进行分配，则检查输出映射是否已有某些有意义的编码
         assrt(cod.IC.H==NO_CODING);
-        assrt(xtb.xtb[(offset)+0].OC.L!=UNASSIGNED_CODING && xtb.xtb[(offset)+0].OC.L!=NO_CODING);
+        assrt(xtb.xtb[(offset)].OC.L!=UNASSIGNED_CODING && xtb.xtb[(offset)].OC.L!=NO_CODING);
         assrt(cod.IC.L==NO_CODING);
         assrt(xtb.xtb[(offset)+1].OC.L!=UNASSIGNED_CODING && xtb.xtb[(offset)+1].OC.L!=NO_CODING);
 
         cod.IC.type = COD_BITS_4;
-        cod.IC.L = xtb.xtb[(offset)+0].OC.L;
+        cod.IC.L = xtb.xtb[(offset)].OC.L;
         cod.IC.H = xtb.xtb[(offset)+1].OC.L;
     }
 
@@ -567,15 +567,15 @@ public class Generator {
         // 编码输入 - 特殊情况，输入只有8位
         long dst = 0;
         if (encodeInput){
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 0), coding.IC, encodeInput, tbl4, tbl8), 0);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 1), coding.IC, encodeInput, tbl4, tbl8), 1);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 2), coding.IC, encodeInput, tbl4, tbl8), 2);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 3), coding.IC, encodeInput, tbl4, tbl8), 3);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 0), coding.IC, true, tbl4, tbl8), 0);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 1), coding.IC, true, tbl4, tbl8), 1);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 2), coding.IC, true, tbl4, tbl8), 2);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 3), coding.IC, true, tbl4, tbl8), 3);
         } else {
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 0), coding.OC[0], encodeInput, tbl4, tbl8), 0);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 1), coding.OC[1], encodeInput, tbl4, tbl8), 1);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 2), coding.OC[2], encodeInput, tbl4, tbl8), 2);
-            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 3), coding.OC[3], encodeInput, tbl4, tbl8), 3);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 0), coding.OC[0], false, tbl4, tbl8), 0);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 1), coding.OC[1], false, tbl4, tbl8), 1);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 2), coding.OC[2], false, tbl4, tbl8), 2);
+            dst |= Utils.byte2long(iocoding_encode08x08(Utils.long2byte(src, 3), coding.OC[3], false, tbl4, tbl8), 3);
         }
         return dst;
     }
@@ -595,11 +595,11 @@ public class Generator {
         // 编码输入 - 特殊情况，输入只有8位
         if (encodeInput) {
             for (int i = 0; i < State.BYTES; i++) {
-                dst.set(iocoding_encode08x08(src.get(i), coding.IC, encodeInput, tbl4, tbl8), i);
+                dst.set(iocoding_encode08x08(src.get(i), coding.IC, true, tbl4, tbl8), i);
             }
         } else {
             for (int i = 0; i < State.BYTES; i++) {
-                dst.set(iocoding_encode08x08(src.get(i), coding.OC[i], encodeInput, tbl4, tbl8), i);
+                dst.set(iocoding_encode08x08(src.get(i), coding.OC[i], false, tbl4, tbl8), i);
             }
         }
     }
@@ -801,7 +801,7 @@ public class Generator {
 
                 // Decode with IO encoding
                 // 使用IO编码解码
-                bb = HILO(lfC[0][2 * i + 1].invCoding[HI((byte)b)], lfC[0][2 * i + 0].invCoding[LO((byte)b)]) & 0xff;
+                bb = HILO(lfC[0][2 * i + 1].invCoding[HI((byte)b)], lfC[0][2 * i].invCoding[LO((byte)b)]) & 0xff;
                 // Transform bb to matrix, to perform mixing bijection operation (matrix multiplication)
                 // 将bb变换为矩阵，执行混合双射操作（即矩阵乘法）
                 GF2MatrixEx tmpMat = new GF2MatrixEx(128, 1);
@@ -977,8 +977,8 @@ public class Generator {
 
         // Precompute L lookup table, L_k stripes
         // 预计算L查找表，L_k条
-        byte Lr_k_table[][] = new byte[State.COLS][256];
-        GF2MatrixEx Lr_k[] = new GF2MatrixEx[State.COLS];
+        byte[][] Lr_k_table = new byte[State.COLS][256];
+        GF2MatrixEx[] Lr_k = new GF2MatrixEx[State.COLS];
 
         // Generate tables for AES
         // 生成AES表
@@ -1031,14 +1031,14 @@ public class Generator {
                     // round key index
                     // 轮密钥索引
                     final int keyIdx = encrypt ?
-                            16 * r                    + State.transpose(AES.shift(idx, encrypt))
+                            16 * r                    + State.transpose(AES.shift(idx, true))
                             : 16 * (AES.ROUNDS - r - 1) + State.transpose(idx);
 
                     // special first / last round key
                     // 特殊的第一轮/最后一轮钥匙
                     final int keyIdx2 = encrypt?
                             16 * (r + 1) + State.transpose(idx)
-                            : 16 * AES.ROUNDS + State.transpose(AES.shift(idx, encrypt));
+                            : 16 * AES.ROUNDS + State.transpose(AES.shift(idx, false));
 
                     // -System.out.println((encrypt ? 'e': 'd')+"T[" + r + "][" + i + "][" + j + "] key = "
 //                            + keyIdx
@@ -1225,9 +1225,9 @@ public class Generator {
                         // Multiply with MC matrix from our AES dedicated for this round, only in 1..9 rounds (not in last round)
                         // 与我们专用于此轮的AES中的MC矩阵相乘，仅在1到9轮（不是在最后一轮）
                         if (encrypt) {
-                            mcres = r < (AES.ROUNDS - 1) ? AESh.getMixColMat().rightMultiply(zj) : zj;
+                            mcres = AESh.getMixColMat().rightMultiply(zj);
                         } else {
-                            mcres = r < (AES.ROUNDS - 1) ? AESh.getMixColInvMat().rightMultiply(zj) : zj;
+                            mcres = AESh.getMixColInvMat().rightMultiply(zj);
                         }
 
                         // Apply 32x32 Mixing bijection, mPreMB is initialized to GF2MatrixEx with 32x1 dimensions,
@@ -1270,7 +1270,7 @@ public class Generator {
                     // 为每个字节构建表
                     for (b = 0; b < 256; b++) {
                         long mapResult;
-                        int bb = b;
+                        int bb;
                         // Decode with IO encoding
                         // IO 编码解码
                         bb = iocoding_encode08x08((byte) b, t3C[r][idx].getCod().IC, true, pCoding04x04, pCoding08x08);
@@ -1288,8 +1288,8 @@ public class Generator {
                         // Map bytes from result via L bijections
                         // 通过L双射来映射结果中的字节
                         mapResult = 0;
-                        mapResult |= Utils.byte2long(Lr_k_table[0][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 8 * 0, 0))], 0);
-                        mapResult |= Utils.byte2long(Lr_k_table[1][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 8 * 1, 0))], 1);
+                        mapResult |= Utils.byte2long(Lr_k_table[0][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 0, 0))], 0);
+                        mapResult |= Utils.byte2long(Lr_k_table[1][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 8, 0))], 1);
                         mapResult |= Utils.byte2long(Lr_k_table[2][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 8 * 2, 0))], 2);
                         mapResult |= Utils.byte2long(Lr_k_table[3][posIdx(NTLUtils.colBinaryVectorToByte(tmpMat, 8 * 3, 0))], 3);
                         // Encode mapResult with out encoding
@@ -1338,9 +1338,9 @@ public class Generator {
             // IO双射
             //
             for(int jj=0; jj<16; jj++){
-                byte bLO = (byte) (extc.getLfC()[0][2*jj+0].coding[LO(state.get(jj))] & 0xff);
+                byte bLO = (byte) (extc.getLfC()[0][2 * jj].coding[LO(state.get(jj))] & 0xff);
                 byte bHI = (byte) (extc.getLfC()[0][2*jj+1].coding[HI(state.get(jj))] & 0xff);
-                state.set((byte) HILO(bHI, bLO), jj);
+                state.set(HILO(bHI, bLO), jj);
             }
         } else {
             // Output -> decode bijections
@@ -1351,9 +1351,9 @@ public class Generator {
             // IO双射
             //
             for(int jj=0; jj<16; jj++){
-                byte bLO = (byte) (extc.getLfC()[1][2*jj+0].invCoding[LO(state.get(jj))] & 0xff);
+                byte bLO = (byte) (extc.getLfC()[1][2 * jj].invCoding[LO(state.get(jj))] & 0xff);
                 byte bHI = (byte) (extc.getLfC()[1][2*jj+1].invCoding[HI(state.get(jj))] & 0xff);
-                state.set((byte) HILO(bHI, bLO), jj);
+                state.set(HILO(bHI, bLO), jj);
             }
 
             //

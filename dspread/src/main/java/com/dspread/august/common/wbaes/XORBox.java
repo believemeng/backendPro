@@ -125,7 +125,7 @@ public class XORBox implements Serializable{
     public static byte[] xorA(final byte[][] xor, byte[] a, byte[] b){
         for (int i=0; i<WIDTH; i++){
             a[i] = (byte)( 
-                    (xor[2*i+0][(((a[i] >>> 4) & 0xF) << 4) | ((b[i] >>> 4) & 0xF)] << 4)
+                    (xor[2 * i][(((a[i] >>> 4) & 0xF) << 4) | ((b[i] >>> 4) & 0xF)] << 4)
                   | (xor[2*i+1][(( a[i]        & 0xF) << 4) | ( b[i]        & 0xF)]     ) 
                    );
         }
@@ -193,7 +193,6 @@ public class XORBox implements Serializable{
      * 在XOR表中设置1个具有8行的子表。
      * @param xorTbl
      * @param idx
-     * @param copy 
      */
     public void setPartXor(final byte[] xorTbl, final int idx){
         setPartXor(xorTbl, idx, true);
@@ -236,9 +235,6 @@ public class XORBox implements Serializable{
             return false;
         }
         final XORBox other = (XORBox) obj;
-        if (!Arrays.deepEquals(this.xor, other.xor)) {
-            return false;
-        }
-        return true;
+        return Arrays.deepEquals(this.xor, other.xor);
     }
 }

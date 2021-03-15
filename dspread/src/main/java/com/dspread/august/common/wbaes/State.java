@@ -84,7 +84,7 @@ public class State implements Serializable, Copyable{
      * @param transpose    transpose, copy is forced
      */
     public State(byte[] state, boolean copy, boolean transpose) {
-        if (transpose==false){
+        if (!transpose){
             if (copy){
                 this.state = Arrays.copyOf(state, BYTES);
             } else {
@@ -215,9 +215,8 @@ public class State implements Serializable, Copyable{
     /**
      * Getter for transposed index
      * 转置索引的获取器
-     * @param i row
-     * @param j column
-     * @return 
+     * @param idx row
+     * @return
      */
     public byte getT(int idx){
         return get(getTIdx(idx));
@@ -228,7 +227,6 @@ public class State implements Serializable, Copyable{
      * 2D坐标的获取器，假设第一行索引: 0 1 2 3
      * @param i row
      * @param j column
-     * @return 
      */
     public void set(byte b, int i, int j){
         set(b, getIdx(i, j));
@@ -248,9 +246,8 @@ public class State implements Serializable, Copyable{
     /**
      * Getter for transposed index
      * 转置索引的获取器
-     * @param i row
-     * @param j column
-     * @return 
+     * @param b data
+     * @param idx column
      */
     public void setT(byte b, int idx){
         set(b, getTIdx(idx));
@@ -264,9 +261,9 @@ public class State implements Serializable, Copyable{
      * @param col
      * @param idx 
      */
-    public void setColumn(W32b col, int idx){
+        public void setColumn(W32b col, int idx){
         final byte[] c = col.get();
-        state[idx+ 0] = c[0];
+        state[idx] = c[0];
         state[idx+ 4] = c[1];
         state[idx+ 8] = c[2];
         state[idx+12] = c[3];
@@ -440,10 +437,7 @@ public class State implements Serializable, Copyable{
             return false;
         }
         final State other = (State) obj;
-        if (!Arrays.equals(this.state, other.state)) {
-            return false;
-        }
-        return true;
+        return Arrays.equals(this.state, other.state);
     }
 
     @Override
@@ -461,6 +455,6 @@ public class State implements Serializable, Copyable{
             }
         }
         
-        return "State{" + "state=" + sb.toString() + ";mem="+state+"}";
+        return "State{" + "state=" + sb.toString() + ";mem="+ Arrays.toString(state) +"}";
     }
 }

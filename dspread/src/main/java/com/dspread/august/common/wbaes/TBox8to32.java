@@ -38,7 +38,7 @@ import java.util.Arrays;
  * Implemented by storing to long.
  * 通过存储到long实现
  * 
- * @author ph4r05
+ * @author
  */
 public class TBox8to32 implements Serializable, Copyable {
     public static final int IWIDTH=1;
@@ -59,7 +59,7 @@ public class TBox8to32 implements Serializable, Copyable {
     
     /**
      * Constructor taking given table.
-     * @param xorTbl
+     * @param tbl
      * @param copy 
      */
     public TBox8to32(final long[] tbl, boolean copy) {
@@ -159,9 +159,6 @@ public class TBox8to32 implements Serializable, Copyable {
             return false;
         }
         final TBox8to32 other = (TBox8to32) obj;
-        if (!Arrays.equals(this.tbl, other.tbl)) {
-            return false;
-        }
-        return true;
+        return Arrays.equals(this.tbl, other.tbl);
     }
 }

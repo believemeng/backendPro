@@ -40,7 +40,7 @@ import com.dspread.august.common.wbaes.generator.Generator.XORCODING;
  */
 public class GXORCascade implements IOEncoding{
     public static final int XOR_BOXES = XORCascade.BOXES;
-    protected XORCODING cod[];
+    protected XORCODING[] cod;
     
     public GXORCascade() {
         super();

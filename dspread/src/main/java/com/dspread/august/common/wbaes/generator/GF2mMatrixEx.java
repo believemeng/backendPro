@@ -60,7 +60,8 @@ public class GF2mMatrixEx extends Matrix {
      * Constructor.
      *
      * @param field a finite field GF(2^m)
-     * @param enc   byte[] matrix in byte array form
+     * @param m
+     * @param n
      */
     public GF2mMatrixEx(GF2mField field, int m, int n)
     {
@@ -457,19 +458,19 @@ public class GF2mMatrixEx extends Matrix {
 
     public String toString()
     {
-        String str = this.numRows + " x " + this.numColumns + " Matrix over "
-            + this.field.toString() + ": \n";
+        StringBuilder str = new StringBuilder(this.numRows + " x " + this.numColumns + " Matrix over "
+                + this.field.toString() + ": \n");
 
         for (int i = 0; i < this.numRows; i++)
         {
             for (int j = 0; j < this.numColumns; j++)
             {
-                str = str + this.field.elementToStr(matrix[i][j]) + " : ";
+                str.append(this.field.elementToStr(matrix[i][j])).append(" : ");
             }
-            str = str + "\n";
+            str.append("\n");
         }
 
-        return str;
+        return str.toString();
     }
 
 }

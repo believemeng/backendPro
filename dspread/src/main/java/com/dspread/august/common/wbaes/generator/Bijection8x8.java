@@ -34,8 +34,8 @@ package com.dspread.august.common.wbaes.generator;
  * @author ph4r05
  */
 public class Bijection8x8 {
-    public byte coding[];
-    public byte invCoding[];
+    public byte[] coding;
+    public byte[] invCoding;
 
     public Bijection8x8() {
         coding    = new byte[256];

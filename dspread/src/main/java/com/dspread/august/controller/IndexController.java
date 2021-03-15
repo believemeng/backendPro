@@ -227,7 +227,6 @@ public class IndexController {
 
     }
 
-
     /**
      * 验证SCRP
      *
@@ -252,11 +251,8 @@ public class IndexController {
 
             return jsonResult;
         }
-
-
         return jsonResult;
     }
-
 
     /**
      * 生成AESTable文件

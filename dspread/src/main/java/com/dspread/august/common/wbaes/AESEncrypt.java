@@ -32,22 +32,15 @@ public class AESEncrypt {
             AESenc = (AES) in.readObject();
             in.close();
             fileIn.close();
-        }catch(IOException i)
+        }catch(IOException | ClassNotFoundException i)
         {
             i.printStackTrace();
-            return null;
-        }catch(ClassNotFoundException c)
-        {
-            c.printStackTrace();
             return null;
         }
         int diff = 16 - content.length % 16;
         int cbcCounter = (content.length / 16 ) + 1;
 
         // 最后一组恰好16位
-        if (diff == 0){
-            cbcCounter++;
-        }
         byte paddingByte = pkcs5PaddingBytes[diff - 1];
 
         byte[] enc = new byte[cbcCounter * 16];
@@ -86,9 +79,7 @@ public class AESEncrypt {
             cbcTemp = state.getStateCopy();
 
 
-            for (int j = 0; j < 16; j++) {
-                enc[i*16 + j] = cbcTemp[j];
-            }
+            System.arraycopy(cbcTemp, 0, enc, i * 16, 16);
 
         }
         return enc;

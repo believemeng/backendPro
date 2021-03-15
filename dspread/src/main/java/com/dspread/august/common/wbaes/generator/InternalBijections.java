@@ -34,8 +34,8 @@ package com.dspread.august.common.wbaes.generator;
  * @author ph4r05
  */
 public class InternalBijections {
-    private LinearBijection MB_L08x08[][]  = new LinearBijection[Generator.MB_CNT_08x08_ROUNDS][Generator.MB_CNT_08x08_PER_ROUND];
-    private LinearBijection MB_MB32x32[][] = new LinearBijection[Generator.MB_CNT_32x32_ROUNDS][Generator.MB_CNT_32x32_PER_ROUND];
+    private LinearBijection[][] MB_L08x08 = new LinearBijection[Generator.MB_CNT_08x08_ROUNDS][Generator.MB_CNT_08x08_PER_ROUND];
+    private LinearBijection[][] MB_MB32x32 = new LinearBijection[Generator.MB_CNT_32x32_ROUNDS][Generator.MB_CNT_32x32_PER_ROUND];
     private Bijection4x4[] pCoding04x04    = null; // 按需初始化
     
     /**

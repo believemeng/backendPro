@@ -34,7 +34,7 @@ import java.util.Arrays;
 /**
  * 32bit vector
  * 32位向量
- * @author ph4r05
+ * @author
  */
 public class W32b implements Serializable, Copyable{
     public static final int WIDTH = 4;
@@ -112,7 +112,7 @@ public class W32b implements Serializable, Copyable{
 
     /**
      * Whole setter, copy
-     * @param state 
+     * @param b
      */
     public void set(byte[] b) {
         this.set(b, true);
@@ -130,7 +130,7 @@ public class W32b implements Serializable, Copyable{
     
     /**
      * State setter with optional copy
-     * @param state
+     * @param b
      * @param copy 
      */
     public void set(byte[] b, boolean copy) {
@@ -189,10 +189,7 @@ public class W32b implements Serializable, Copyable{
             return false;
         }
         final W32b other = (W32b) obj;
-        if (!Arrays.equals(this.b, other.b)) {
-            return false;
-        }
-        return true;
+        return Arrays.equals(this.b, other.b);
     }
     
     @Override
@@ -210,6 +207,6 @@ public class W32b implements Serializable, Copyable{
             }
         }
         
-        return "W32b{" + "b=" + sb.toString() + ";mem="+b+"}";
+        return "W32b{" + "b=" + sb.toString() + ";mem="+ Arrays.toString(b) +"}";
     }
 }

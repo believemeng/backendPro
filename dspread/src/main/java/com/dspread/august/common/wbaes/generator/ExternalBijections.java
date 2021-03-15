@@ -37,7 +37,7 @@ public class ExternalBijections {
     // needs to be initialized on demand...
     // 按需初始化
     private Bijection4x4[][] lfC   = new Bijection4x4[2][2* AESCodingMap.BYTES];
-    private LinearBijection IODM[] = new LinearBijection[2];
+    private LinearBijection[] IODM = new LinearBijection[2];
     
     /**
      * Allocate memory for mixing bijections

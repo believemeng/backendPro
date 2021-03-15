@@ -43,14 +43,14 @@ public class AES implements Serializable {
     public static final int ROUNDS = 10;
     public static final int T1BOXES = 2;
     public static final int T1Boxes = 2;
-    public static final int shiftRows[] = {
+    public static final int[] shiftRows = {
             0,   1,  2,  3,
             5,   6,  7,  4,
             10, 11,  8,  9,
             15, 12, 13, 14
     };
 
-    public static final int shiftRowsInv[] = {
+    public static final int[] shiftRowsInv = {
             0,  1,  2,  3,
             7,  4,  5,  6,
             10, 11,  8,  9,
@@ -75,14 +75,14 @@ public class AES implements Serializable {
     /**
      * Encryption OR decryption - depends on generated tables
      * 加密或解密 - 取决于生成的表
-     * @param in
+     * @param
      */
     public State crypt(State state){
-        int r=0, i=0;
+        int r, i;
         // T2，T3盒的中间结果
-        W32b  ires[] = new W32b[BYTES];	// intermediate result for T2,T3-boxes
+        W32b[] ires = new W32b[BYTES];	// intermediate result for T2,T3-boxes
         // T1盒的中间结果
-        State ares[] = new State[BYTES];	// intermediate result for T1-boxes
+        State[] ares = new State[BYTES];	// intermediate result for T1-boxes
 
         // initialize ires, ares at first
         // 初始化ires，ares
@@ -126,7 +126,7 @@ public class AES implements Serializable {
                 // After this operation we will have one 32bit ires[] for 1 column
                 // 在此操作之后，得到有一列数据的32位ires[]
                 ires[i].set(xor[r][2*i].xor(
-                        ires[ 0+i].getLong(),
+                        ires[i].getLong(),
                         ires[ 4+i].getLong(),
                         ires[ 8+i].getLong(),
                         ires[12+i].getLong()));
@@ -139,12 +139,12 @@ public class AES implements Serializable {
                 ires[12+i].set(t3[r][12+i].lookup(cires[3]));
                 ires[ 8+i].set(t3[r][ 8+i].lookup(cires[2]));
                 ires[ 4+i].set(t3[r][ 4+i].lookup(cires[1]));
-                ires[ 0+i].set(t3[r][ 0+i].lookup(cires[0]));
+                ires[i].set(t3[r][i].lookup(cires[0]));
 
                 // Apply final XOR cascade after T3 box
                 // 在T3盒之后计算最后XOR级联
                 ires[i].set(xor[r][2*i+1].xor(
-                        ires[ 0+i].getLong(),
+                        ires[i].getLong(),
                         ires[ 4+i].getLong(),
                         ires[ 8+i].getLong(),
                         ires[12+i].getLong()));
@@ -200,7 +200,7 @@ public class AES implements Serializable {
      * Returns shifted bit 
      * 返回移位
      * @param idx
-     * @param encrypt
+     * @param
      * @return
      */
     public int shift(int idx){
@@ -322,9 +322,6 @@ public class AES implements Serializable {
         if (!Arrays.deepEquals(this.xor, other.xor)) {
             return false;
         }
-        if (this.encrypt != other.encrypt) {
-            return false;
-        }
-        return true;
+        return this.encrypt == other.encrypt;
     }
 }
